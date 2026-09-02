@@ -44,6 +44,10 @@ export default function Login() {
         router.push("/");
       }, 1000);
     } catch (error: any) {
+      toast.add({
+        type: "error",
+        description: error?.response?.data.message || error,
+      })
       console.error(error?.response?.data.message || error);
     } finally {
       setLoading(false);

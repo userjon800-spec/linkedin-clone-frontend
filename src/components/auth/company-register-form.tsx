@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { api } from "@/lib/https";
+import { toast } from "../ui/toast";
 
 type CompanyRegisterFormData = {
   companyName: string;
@@ -25,10 +26,16 @@ export default function CompanyRegisterForm() {
         `/auth/company/register`,
         data,
       );
-
-      console.log("Company created");
-    } catch (error) {
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
+    } catch (error:any) {
       console.error(error);
+      toast.add({
+        type: "error",
+        description: error.response.data.message,
+        priority: "high",
+      });
     }
   };
 
@@ -61,7 +68,7 @@ export default function CompanyRegisterForm() {
           })}
         />
 
-        <Button className="w-full" disabled={isSubmitting}>
+        <Button className="w-full" type="submit" disabled={isSubmitting}>
           Register
         </Button>
       </form>

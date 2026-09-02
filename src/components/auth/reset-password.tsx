@@ -83,7 +83,6 @@ export default function ResetPasswordPage() {
 
     try {
       setLoading(true);
-      console.log(token, newPassword);
       const { data } = await api.post(`/auth/reset-password`, {
         token,
         password: newPassword,
@@ -110,7 +109,6 @@ export default function ResetPasswordPage() {
   };
 
   return (
-    // Ekran va Karta foni qurilma mavzusiga (System Theme) moslashadi
     <div className="min-h-screen flex items-center justify-center bg-[#f3f2ef] dark:bg-neutral-950 px-4 transition-colors duration-200">
       <Link href="/auth/role" className="absolute top-4 left-4">
         <Button variant="outline">
@@ -132,7 +130,6 @@ export default function ResetPasswordPage() {
           </p>
         </div>
 
-        {/* Dynamic Error State */}
         {error && (
           <div className="mb-5 p-3.5 bg-red-50 dark:bg-red-950/50 border border-red-200 dark:border-red-900 text-red-700 dark:text-red-200 text-sm rounded-lg flex items-start gap-2.5">
             <AlertCircle className="w-5 h-5 text-red-500 shrink-0 mt-0.5" />
@@ -140,7 +137,6 @@ export default function ResetPasswordPage() {
           </div>
         )}
 
-        {/* Dynamic Success State */}
         {isSuccess ? (
           <div className="p-6 bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-800 rounded-xl text-center space-y-3">
             <CheckCircle2 className="w-12 h-12 text-green-600 dark:text-green-500 mx-auto" />

@@ -14,6 +14,9 @@ const roboto = Roboto({
 export const metadata: Metadata = {
   title: "Linkedin",
   description: "Linkedin clone app created by Javohir Xamdamboyev",
+  icons: {
+    icon: "/logo.png",
+  }
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

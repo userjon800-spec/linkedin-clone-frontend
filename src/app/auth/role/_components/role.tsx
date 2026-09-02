@@ -44,13 +44,13 @@ export default function Role() {
 
               <ul className="space-y-3 mb-8">
                 <li className="flex items-center gap-2 text-sm">
-                  ✅ Ish topish
+                  Ish topish
                 </li>
                 <li className="flex items-center gap-2 text-sm">
-                  ✅ Resume yaratish
+                  Resume yaratish
                 </li>
                 <li className="flex items-center gap-2 text-sm">
-                  ✅ Kompaniyalar bilan bog'lanish
+                  Kompaniyalar bilan bog'lanish
                 </li>
               </ul>
 
@@ -86,13 +86,13 @@ export default function Role() {
 
               <ul className="space-y-3 mb-8">
                 <li className="flex items-center gap-2 text-sm">
-                  ✅ Vakansiya yaratish
+                  Vakansiya yaratish
                 </li>
                 <li className="flex items-center gap-2 text-sm">
-                  ✅ Nomzodlarni boshqarish
+                  Nomzodlarni boshqarish
                 </li>
                 <li className="flex items-center gap-2 text-sm">
-                  ✅ Recruiting dashboard
+                  Recruiting dashboard
                 </li>
               </ul>
 

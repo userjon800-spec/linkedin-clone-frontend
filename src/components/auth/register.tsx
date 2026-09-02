@@ -12,8 +12,6 @@ export default function Register() {
 
   const role = searchParams.get("role");
 
-  console.log(role);
-
   if (!role) return null;
 
   return (

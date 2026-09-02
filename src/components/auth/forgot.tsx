@@ -4,7 +4,6 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Mail, Loader2, ArrowLeft, CheckCircle2 } from "lucide-react";
 import Link from "next/link";
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -17,7 +16,6 @@ type ForgotPasswordFormData = {
 
 export default function Forgot() {
   const [success, setSuccess] = useState(false);
-
   const {
     register,
     handleSubmit,
