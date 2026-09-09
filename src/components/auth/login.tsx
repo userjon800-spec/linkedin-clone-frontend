@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Loader2, Mail, Lock, ArrowLeft } from "lucide-react";
 
@@ -21,11 +21,13 @@ export default function Login() {
   const [password, setPassword] = useState("");
 
   const [loading, setLoading] = useState(false);
-
+  useEffect(() => {
+    if (!role) {
+      router.push("/auth/role");
+    }
+  }, []);
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    if (!role) return;
 
     try {
       setLoading(true);
@@ -47,7 +49,7 @@ export default function Login() {
       toast.add({
         type: "error",
         description: error?.response?.data.message || error,
-      })
+      });
       console.error(error?.response?.data.message || error);
     } finally {
       setLoading(false);

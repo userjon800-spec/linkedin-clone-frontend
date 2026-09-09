@@ -6,21 +6,17 @@ const Navbar = dynamic(() => import("@/components/shared/navbar"));
 
 export const metadata: Metadata = {
   title: "Linkedin Home",
-  description: "Linkedin clone app created by Javohir Xamdamboyev",
 };
 
 export default async function RootLayout({ children }: LayoutProps<"/">) {
-    const authData = await getUsersServer();
-
+  const authData = await getUsersServer();
   if (!authData || !authData.user) {
     redirect("/auth/role");
   }
   return (
-   <>
-    
-        <Navbar user={authData.user} />
-          <main>{children}</main>
-   </>
-
+    <>
+      <Navbar user={authData.user} />
+      <main className="max-w-[1600px] mx-auto" >{children}</main>
+    </>
   );
 }

@@ -2,17 +2,22 @@
 
 import UserRegisterForm from "./user-register-form";
 import CompanyRegisterForm from "./company-register-form";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { Button } from "../ui/button";
 import { ArrowLeft } from "lucide-react";
+import { useEffect } from "react";
 
 export default function Register() {
   const searchParams = useSearchParams();
-
+  const router = useRouter();
   const role = searchParams.get("role");
 
-  if (!role) return null;
+  useEffect(()=>{
+    if (!role) {
+    router.push("/auth/role");
+  };
+  },[])
 
   return (
     <div className="min-h-screen bg-linear-to-br from-background via-background to-muted/30 flex items-center justify-center p-4">

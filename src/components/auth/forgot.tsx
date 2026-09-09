@@ -59,7 +59,7 @@ export default function Forgot() {
                 <div>
                   <Input
                     type="email"
-                    placeholder="you@example.com"
+                    placeholder="Email manzilingizni kiriting"
                     {...register("email", {
                       required: "Email kiritilishi shart",
                       pattern: {
@@ -93,7 +93,7 @@ export default function Forgot() {
               </form>
 
               <Link
-                href="/auth/role/login"
+                href="/auth/role"
                 className="mt-6 flex items-center justify-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
               >
                 <ArrowLeft className="h-4 w-4" />

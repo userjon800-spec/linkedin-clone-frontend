@@ -1,9 +1,27 @@
 import { NextResponse, NextRequest } from "next/server";
+// JWT payloadi-ni Edge Runtime-da xavfsiz decode qilish
+function decodeJwtPayload(token: string) {
+  try {
+    const base64Url = token.split('.')[1]
+    if (!base64Url) return null
 
+    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/')
+    const jsonPayload = decodeURIComponent(
+      atob(base64)
+        .split('')
+        .map((c) => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2))
+        .join('')
+    )
+    return JSON.parse(jsonPayload)
+  } catch (error) {
+    return null
+  }
+}
 export async function proxy(req: NextRequest) {
   const token = req.cookies.get("accessToken")?.value;
   const refreshToken = req.cookies.get("refreshToken")?.value;
-
+  const payload = refreshToken ? decodeJwtPayload(refreshToken) : null;
+  const userRole = payload?.role 
   let response = NextResponse.next();
 
   if (!token && refreshToken) {
@@ -58,7 +76,14 @@ export async function proxy(req: NextRequest) {
     "/auth/role",
     "/auth/reset-password",
   ];
-
+  // 2. AGAR FOYDALANUVCHIDA ALLAQACHON ROL BOR BO'LSA ('company' yoki 'user'):
+  // U /auth/role sahifasiga kirmoqchi bo'lsa, uni bosh sahifaga (yoki dashboardga) qaytaramiz!
+  if (userRole && pathname === '/auth/role') {
+    return NextResponse.redirect(new URL('/', req.url))
+  }
+  if (!userRole && pathname !== '/auth/role' && !pathname.startsWith('/auth')) {
+    return NextResponse.redirect(new URL('/auth/role', req.url))
+  }
   const isPublicRoute = publicRouters.some((route) =>
     pathname.startsWith(route),
   );

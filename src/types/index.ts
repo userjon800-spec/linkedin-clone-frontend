@@ -51,13 +51,18 @@ export interface IVacancy {
   company: string;
   title: string;
   description: string;
-  employmentType: string;
-  locationType: string;
+  employmentType: 
+    | "FULL_TIME"
+    | "PART_TIME"
+    | "CONTRACT"
+    | "INTERN"
+    | "FREELANCE";
+  locationType: "ON_SITE" | "HYBRID" | "REMOTE";
   location: string;
-  experienceLevel:string;
+  experienceLevel: "JUNIOR" | "MIDDLE" | "SENIOR" | "EXPERT";
   salary: {
-    min: number;
-    max: number;
+    min: number | null;
+    max: number | null;
     currency: string;
     period: string;
   };
