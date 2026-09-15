@@ -20,9 +20,9 @@ export default async function Page() {
     redirect("/auth/role");
   }
   return (
-    <div className="mt-4 w-full h-full border border-white flex items-center justify-between gap-3">
+    <div className="mt-4 w-full h-full p-2 flex items-start justify-between gap-3">
       {authData.role === "user" ? <AddExperience /> : <VacancyCreateModal />}
-      <div className="w-[55%] flex flex-col gap-3">
+      <div className="w-full flex flex-col gap-3">
         <StartAddPost user={authData.user} />
         post scroll area
       </div>

@@ -59,7 +59,7 @@ export default function AddExperience({ user }: AddExperienceProps) {
   const displayFallback = user?.firstName?.charAt(0).toUpperCase() || "J";
 
   return (
-    <div className="w-[18%] max-w-xs sm:max-w-sm flex flex-col gap-2 text-white font-sans">
+    <div className="w-[22%] max-w-xs sm:max-w-sm flex flex-col gap-2 text-white font-sans">
       {/* Profile Sidebar Card */}
       <div className="bg-[#1d2226] border border-[#38434f] rounded-xl overflow-hidden">
         {/* Top Banner (Next Image) */}

@@ -75,6 +75,7 @@ export async function proxy(req: NextRequest) {
     "/auth/forgot",
     "/auth/role",
     "/auth/reset-password",
+    "/auth/admin",
   ];
   // 2. AGAR FOYDALANUVCHIDA ALLAQACHON ROL BOR BO'LSA ('company' yoki 'user'):
   // U /auth/role sahifasiga kirmoqchi bo'lsa, uni bosh sahifaga (yoki dashboardga) qaytaramiz!

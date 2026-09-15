@@ -5,7 +5,7 @@ export interface IExperience {
   endDate: Date;
   description: string;
 }
-export interface Education {
+export interface IEducation {
   school: string;
   degree: string;
   field: string;
@@ -13,6 +13,7 @@ export interface Education {
   endYear: number;
 }
 export interface IUser {
+  _id: string;
   email: string;
   password: string;
   posts: string[];
@@ -27,10 +28,10 @@ export interface IUser {
   website: string;
   company: string;
   experience: IExperience[];
-  education: Education[];
+  education: IEducation[];
   skills: string[];
-  connections: string[];
-  following: string[];
+  connections: any[];
+  following: any[];
 }
 export interface ICompany {
   email: string;
@@ -51,7 +52,7 @@ export interface IVacancy {
   company: string;
   title: string;
   description: string;
-  employmentType: 
+  employmentType:
     | "FULL_TIME"
     | "PART_TIME"
     | "CONTRACT"
@@ -69,4 +70,21 @@ export interface IVacancy {
   applicantsCount: number;
   isActive: boolean;
   skills: string[];
+}
+
+export interface IConnection {
+  _id: string;
+  sender: IUser;
+  receiver: IUser;
+  status: "PENDING" | "ACCEPTED" | "REJECTED";
+  createdAt: Date;
+  updatedAt: Date;
+}
+export interface IPost {
+  author: IUser;
+  _id: string;
+  content: string;
+  imageUrl: string;
+  likes: string[];
+  commentsCount: number;
 }

@@ -40,6 +40,10 @@ export default function UserRegisterForm() {
       setTimeout(() => {
         window.location.reload();
       }, 1000);
+      toast.add({
+        type: "success",
+        description: "Tizimdan muaffaqiyatli ro'yxatdan o'tdingiz",
+      });
     } catch (error: any) {
       console.error(error);
       toast.add({

@@ -25,7 +25,7 @@ export default function Role() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="relative grid grid-cols-1 md:grid-cols-2 gap-6">
           <Card
             onClick={() => handleSelectRole("user")}
             className="group cursor-pointer border-2 transition-all duration-300 hover:border-primary hover:shadow-xl hover:-translate-y-1"
@@ -43,9 +43,7 @@ export default function Role() {
               </p>
 
               <ul className="space-y-3 mb-8">
-                <li className="flex items-center gap-2 text-sm">
-                  Ish topish
-                </li>
+                <li className="flex items-center gap-2 text-sm">Ish topish</li>
                 <li className="flex items-center gap-2 text-sm">
                   Resume yaratish
                 </li>
@@ -55,7 +53,7 @@ export default function Role() {
               </ul>
 
               <Button
-                className="w-full group-hover:bg-primary"
+                className="w-full group-hover:bg-primary cursor-pointer"
                 onClick={(e) => {
                   e.stopPropagation();
                   handleSelectRole("user");
@@ -67,7 +65,12 @@ export default function Role() {
             </CardContent>
           </Card>
 
-          {/* COMPANY CARD */}
+          <button
+            type="button"
+            onClick={() => router.push("/auth/admin")}
+            className="hidden md:block absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-muted-foreground/20 transition-colors duration-200 z-10 outline-none"
+          />
+
           <Card
             onClick={() => handleSelectRole("company")}
             className="group cursor-pointer border-2 transition-all duration-300 hover:border-primary hover:shadow-xl hover:-translate-y-1"
@@ -97,7 +100,7 @@ export default function Role() {
               </ul>
 
               <Button
-                className="w-full group-hover:bg-primary"
+                className="w-full group-hover:bg-primary cursor-pointer"
                 onClick={(e) => {
                   e.stopPropagation();
                   handleSelectRole("company");
