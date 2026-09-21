@@ -17,8 +17,9 @@ export default async function Page() {
   const authData = await getUsersServer();
   if (!authData) {
     return <Skeleton />;
-  }
-  if (!authData || !authData.user || authData.role !== "user") {
+  } else if (authData.role === "company") {
+    redirect("/");
+  } else if (!authData || !authData.user) {
     redirect("/auth/role");
   }
   const user = authData.user as IUser;
