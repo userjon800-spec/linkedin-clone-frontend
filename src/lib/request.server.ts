@@ -74,3 +74,42 @@ export async function getUsersServer() {
     return null;
   }
 }
+
+export async function getVacancyServer({ id }: { id: string }) {
+  try {
+    const cookieStore = await cookies();
+    const refreshToken = cookieStore.get("refreshToken")?.value;
+    const accessToken = cookieStore.get("accessToken")?.value;
+    const cookieString = cookieStore.toString();
+    if (!refreshToken && !accessToken) {
+      return null;
+    }
+    const userRole = getRoleFromToken(refreshToken || accessToken);
+    if (userRole === "company") {
+      return null;
+    }
+    const endpoint = `${API_URL}/api/vacancy/vacancy/${id}`;
+    const response = await api.get(endpoint, {
+      headers: {
+        Cookie: cookieString,
+      },
+    });
+    const account = response.data;
+
+    return {
+      success: response.data?.success ?? true,
+      data: account.vacancy,
+      role: userRole,
+    };
+  } catch (error: any) {
+    // 🚨 2. Xatolik yuz bersa, uni terminalga to'liq chiqarish
+    console.error("❌ getUsersServer ERROR:");
+    if (error.response) {
+      console.error("Status:", error.response.status);
+      console.error("Data:", error.response.data);
+    } else {
+      console.error("Message:", error.message || error);
+    }
+    return null;
+  }
+}

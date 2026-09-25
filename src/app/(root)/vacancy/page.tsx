@@ -11,7 +11,7 @@ export default async function Page() {
   }
   return (
     <div>
-      <VacancyPage />
+      <VacancyPage role={company.role} />
     </div>
   );
 }

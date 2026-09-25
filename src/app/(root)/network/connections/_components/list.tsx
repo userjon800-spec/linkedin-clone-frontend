@@ -66,10 +66,8 @@ export default function List() {
     try {
       setLoading(true);
       const res = await api.get("/connections/get-connections");
-      console.log("Connections response:", res.data);
 
       if (res.data?.success) {
-        // Backend'dan kelgan ma'lumotlar strukturasiga qarab moslaymiz
         const data = res.data.friends || res.data.connections || [];
         setConnections(data);
       }
@@ -88,7 +86,6 @@ export default function List() {
 
       // DELETE so'rovini /api/connections/[id] ga yuboramiz
       const res = await api.delete(`/api/connections/${connectionId}`);
-      console.log("Remove response:", res.data);
 
       // UI'dan ham o'chiramiz
       setConnections((prev) =>

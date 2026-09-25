@@ -18,7 +18,6 @@ export default function RequestedUser() {
     try {
       setLoading(true);
       const res = await api.get("/connections/get-req-connect");
-      console.log("Requested users response:", res.data);
       if (res.data?.success && Array.isArray(res.data.connections)) {
         setRequests(res.data.connections);
       }

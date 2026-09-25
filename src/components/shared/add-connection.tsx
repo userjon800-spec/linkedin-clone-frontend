@@ -6,7 +6,6 @@ import { IUser } from "@/types";
 import { Plus, Loader2, Check, ArrowRight, User } from "lucide-react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { Button } from "../ui/button";
 import { toast } from "../ui/toast";
 
 interface ExtendedUser extends IUser {
@@ -17,7 +16,6 @@ interface ExtendedUser extends IUser {
 export default function AddConnection() {
   const [users, setUsers] = useState<ExtendedUser[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const router = useRouter();
   // Har bir user uchun ulanish holatlarini saqlash
   const [pendingIds, setPendingIds] = useState<Record<string, boolean>>({});
   const [connectedIds, setConnectedIds] = useState<Record<string, boolean>>({});

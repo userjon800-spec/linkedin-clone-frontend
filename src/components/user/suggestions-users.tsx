@@ -83,7 +83,6 @@ export default function SuggestionsUsers({
     // 1. UI holatini darhol 'Pending' ga o'tkazamiz
     setPendingUserIds((prev) => [...prev, userId]);
 
-    console.log(userId);
     try {
       const res = await api.post(`/connections/req-connect/${userId}`);
       console.log("Connect response:", res.data);
@@ -122,8 +121,8 @@ export default function SuggestionsUsers({
       ) : (
         /* Grid Layout (4 ta ustun rasmdagidek) */
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-          {displayedUsers
-            .filter((user) => !dismissedUserIds.includes(user._id)) // X bosilganlarni ko'rsatmaymiz
+          {displayedUsers 
+            .filter((user) => !dismissedUserIds.includes(user._id ? user._id : "")) // X bosilganlarni ko'rsatmaymiz
             .map((user) => {
               const fullName =
                 `${user.firstName || ""} ${user.lastName || ""}`.trim();
@@ -133,7 +132,7 @@ export default function SuggestionsUsers({
                 user.backgroundImage ||
                 "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=600&auto=format&fit=crop";
 
-              const isPending = pendingUserIds.includes(user._id);
+              const isPending = pendingUserIds.includes(user._id ? user._id : "");
 
               return (
                 <div
@@ -152,7 +151,7 @@ export default function SuggestionsUsers({
                     {/* X (Dismiss) Button */}
                     <button
                       type="button"
-                      onClick={() => handleDismiss(user._id)}
+                      onClick={() => handleDismiss(user._id ? user._id : "")}
                       className="absolute top-2 right-2 bg-black/60 hover:bg-black/80 text-white p-1 rounded-full transition-colors z-10 cursor-pointer"
                       title="Dismiss"
                     >
@@ -204,7 +203,7 @@ export default function SuggestionsUsers({
                       {/* Connect / Pending Button */}
                       <button
                         type="button"
-                        onClick={() => !isPending && handleConnect(user._id)}
+                        onClick={() => !isPending && handleConnect(user._id ? user._id : "")}
                         disabled={isPending}
                         className={`w-full py-1.5 px-3 rounded-full text-sm font-semibold border transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
                           isPending

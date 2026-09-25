@@ -13,7 +13,7 @@ export interface IEducation {
   endYear: number;
 }
 export interface IUser {
-  _id: string;
+  _id?: string | null;
   email: string;
   password: string;
   posts: string[];
@@ -49,6 +49,7 @@ export interface ICompany {
   followers: IUser[];
 }
 export interface IVacancy {
+  _id: string;
   company: string;
   title: string;
   description: string;
@@ -69,6 +70,7 @@ export interface IVacancy {
   };
   applicantsCount: number;
   isActive: boolean;
+  createdAt: Date;
   skills: string[];
 }
 
